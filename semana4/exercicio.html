@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulário de Cadastro:</h2>
+        <form id="cadastroForm">
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+           
+            <div id="segunda-secao">
+                <div id="secao-email">
+                    <label>Email:</label>
+                    <input type="email" id="email" placeholder="Digite seu email" required>
+                    <span id="emailError" class="error"></span>
+                </div>
+                <div>
+                    <label>Data Nascimento:</label>
+                    <input type="date" id="dataNascimento">    
+                </div>
+            </div>
+           
+            <div id="terceira-secao">
+                <div id="secao-telefone">
+                    <div>
+                        <label>Telefone Fixo:</label>
+                        <input type="text" id="telefoneFixo" placeholder="(99)9999-9999">
+                    </div>
+                    <div>
+                        <label>Telefone Celular:</label>
+                        <input type="text" id="telefoneCelular" placeholder="(99)99999-9999">
+                    </div>
+                </div>
+                <div class="secao-radio">
+                    <input type="radio" id="professor" name="pessoa" value="Professor">
+                    <label for="professor">Professor</label>
+                    <input type="radio" id="professor" name="pessoa" value="Aluno">
+                    <label for="aluno">Aluno</label>
+                </div>
+            </div>
+
+            <!-- Seção que será alterada com rádio -->
+            <div>
+
+            </div>
+
+            <div>
+                <label for="matricula">Matrícula:</label>
+                <input type="text" id="matricula" placeholder="Digite sua matrícula">
+            </div>
+           
+            <button type="submit">Enviar</button>
+            <button type="reset">Redefinir</button>
+        </form>
+    </div>
+</body>
+</html>
