@@ -18,23 +18,30 @@ input {
     margin-bottom: 20px;
     border-width: 0 0 1px 0;
 }
-div#segunda-secao, div#terceirasecao {
+/*segunda secao*/
+div#segunda-secao, div#terceira-secao{
     display: flex;
     justify-content: space-between;
 }
+div#secao-email {
+    width: 70%;
+}
+input[type=date] {
+    border-width: 1px;
+    height: 14px;
+}
+/*terceira secao*/
 div#secao-telefone {
+    width: 70%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .secao-radio {
     display: flex;
-    flex-direction: row;
     margin-top: 5px;
 }
-
+/*botoes*/
 button {
     margin-top: 10px;
     padding: 10px;
 }
-
-/*.error { color: red; font-size: 12px; }*/

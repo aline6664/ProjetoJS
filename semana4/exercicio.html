@@ -4,60 +4,70 @@
     <meta charset="UTF-8">
     <title>Formulário de Cadastro</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <h2>Formulário de Cadastro:</h2>
         <form id="cadastroForm">
-
+            <!--Nome-->
             <label for="nome">Nome:</label>
             <input type="text" id="nome" placeholder="Digite seu nome completo" required>
-           
             <div id="segunda-secao">
+                <!--Email-->
                 <div id="secao-email">
-                    <label>Email:</label>
+                    <label for="email">Email:</label>
                     <input type="email" id="email" placeholder="Digite seu email" required>
-                    <span id="emailError" class="error"></span>
                 </div>
+                <!--Data Nascimento-->
                 <div>
-                    <label>Data Nascimento:</label>
-                    <input type="date" id="dataNascimento">    
+                    <label for="dataNascimento">Data Nascimento:</label>
+                    <input type="date" id="dataNascimento" required>    
                 </div>
             </div>
-           
             <div id="terceira-secao">
                 <div id="secao-telefone">
+                    <!--Telefone Fixo-->
                     <div>
-                        <label>Telefone Fixo:</label>
+                        <label for="telefoneFixo">Telefone Fixo:</label>
                         <input type="text" id="telefoneFixo" placeholder="(99)9999-9999">
                     </div>
+                    <!--Telefone Celular-->
                     <div>
-                        <label>Telefone Celular:</label>
-                        <input type="text" id="telefoneCelular" placeholder="(99)99999-9999">
+                        <label for="telefoneCelular">Telefone Celular:</label>
+                        <input type="text" id="telefoneCelular" placeholder="(99)99999-9999" required>
                     </div>
                 </div>
-                <div class="secao-radio">
-                    <input type="radio" id="professor" name="pessoa" value="Professor">
-                    <label for="professor">Professor</label>
-                    <input type="radio" id="professor" name="pessoa" value="Aluno">
-                    <label for="aluno">Aluno</label>
-                </div>
+                    <!--Professor/Aluno-->
+                    <div class="secao-radio">
+                        <label for="professor">
+                            <input type="radio" id="professor" name="tipo" value="Professor" checked> Professor <!--opcao default-->
+                        </label>
+                        <label for="aluno">
+                            <input type="radio" id="aluno" name="tipo" value="Aluno"> Aluno
+                        </label>
+                    </div>
             </div>
-
-            <!-- Seção que será alterada com rádio -->
-            <div>
-
+            <!-- Campo dinamico que será alterada com rádio -->
+            <div id="campoDinamico">
+                <label>Área de Atuação:</label>
+                <input type="text" id="areaAtuacao" placeholder="Digite sua área de atuação" required>
+                
+                <label>Lattes:</label>
+                <input type="text" id="lattes" placeholder="Digite o link do seu Lattes" required>
             </div>
-
+            <!--Matricula-->
             <div>
                 <label for="matricula">Matrícula:</label>
-                <input type="text" id="matricula" placeholder="Digite sua matrícula">
+                <input type="text" id="matricula" placeholder="Digite sua matrícula" required>
             </div>
-           
+            <!--Botoes-->
             <button type="submit">Enviar</button>
             <button type="reset">Redefinir</button>
         </form>
+        <!--Mostrar cadastro na tela-->
+        <div id="resultadoCadastro">
+        </div>
     </div>
+    <script type="text/javascript" src="script.js" defer></script>
 </body>
 </html>
