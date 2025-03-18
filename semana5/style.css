@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+div#conteudo {
+    display: block;
+    margin: auto;
+    padding: 3px;
+    width: 30%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+div#tabela {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+p,h1,h2 {
+    text-align: center;
+}
+p.caixa {
+    border: 1.4px solid black;
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+    margin: auto;
+}
+img.icon-pessoa {
+    width: 130px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+/*Botões de + e -*/
+div.botoes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+img.icon-clickavel {
+    width: 50px;
+    cursor: pointer;
+    transition: transform .2s;
+}
+img.icon-clickavel:hover {
+    transform: scale(1.1);
+}
+/*Botão de resetar*/
+img.icon-resetar {
+    width: 30px;
+    cursor: pointer;
+}
