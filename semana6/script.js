@@ -1,15 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("teste, carregado");
-    /*
-    function carregarConteudo()
-    {
-        var titulo = document.createElement("h1");
-        var tituloTexto = document.createTextNode("Total");
-        titulo.appendChild(tituloTexto);
-        document.getElementById("conteudo").appendChild(titulo);
-    }
-    carregarConteudo();
-    */
     const conteudo = document.getElementById("conteudo");
     conteudo.innerHTML = `
         <h1>Controle de Valores</h1>
@@ -44,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("btnMulheres").addEventListener("click", () => adicionarValor('mulheres'));
     document.getElementById("btnDiminuirHomens").addEventListener("click", () => diminuirValor('homens'));
     document.getElementById("btnDiminuirMulheres").addEventListener("click", () => diminuirValor('mulheres'));
-    document.getElementById("btnReset").addEventListener("click", resetarValores);
+    document.getElementById("btnReset").addEventListener("click", resetarValores());
 });
 
 let valorHomens = 0;
