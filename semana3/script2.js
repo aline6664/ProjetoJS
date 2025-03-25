@@ -42,31 +42,27 @@ function Carro() {
     this.getFipe = function() {
         return this.valor_fipe;
     }
-}
-
-function anosUtilizacao() {
-    var anosutilizado = 2025 - this.ano;
-    return anosutilizado;
-}
-
-function valorMercado() {
-    if (this.kilometragem <= 30000) {
-        var valor =+ (this.valor_fipe * 1.1);
-        return valor;
+    // métodos
+    this.anosUtilizacao = function() {
+        const anoAtual = new Date().getFullYear();
+        return anoAtual - this.ano;
     }
-    else if (this.kilometragem > 30000 && this.kilometragem <= 50000) {
-        var valor =+ (this.valor_fipe * 1);
-        return valor;
+    this.valorMercado = function() {
+        const kmPorAno = this.km / this.anosUtilizacao();
+        let percentual = 1;
+        
+        if (kmPorAno <= 30000){
+            percentual = 1.1; // 110% do valor FIPE
+        }
+        else if (kmPorAno <= 50000){
+            percentual = 1;  // 100% do valor FIPE
+        }
+        else {
+            percentual = 0.9; // 90% do valor FIPE
+        }
+        return this.valor_fipe * percentual;
     }
-    else if (this.kilometragem > 50000) {
-        var valor =+ (this.valor_fipe * 0.9);
-        return valor;
-    }
-}
-
-// carros que rodam até 30.000 km/ano – 110% do valor_fipe
-//  carros que rodam entre 30.000 e 50.000 km/ano – 100% do valor_fipe
-//  carros que rodam mais que 50.000 km/ano – 90% do valor_fipe
+};
 
 // Evento para envio do formulario
 document.getElementById("formulario").addEventListener("submit", function(evento) {
@@ -93,9 +89,11 @@ document.getElementById("formulario").addEventListener("submit", function(evento
     "<p><b>Marca:</b> " + umCarro.getMarca() + "</p>" +
     "<p><b>Modelo:</b> " + umCarro.getModelo() + "</p>" +
     "<p><b>Ano:</b> " + umCarro.getAno() + "</p>" +
-    "<p><b>Cor:</b> " + umCarro.Cor() + "</p>" +
+    "<p><b>Cor:</b> " + umCarro.getCor() + "</p>" +
     "<p><b>Kilometragem:</b> " + umCarro.getKilom() + "</p>" +
-    "<p><b>Valor Fipe:</b> " + umCarro.getFipe() + "</p>";
+    "<p><b>Valor Fipe:</b> R$ " + umCarro.getFipe() + "</p>" +
+    "<p><b>Anos de Utilização:</b> " + umCarro.anosUtilizacao() + "</p>" +
+    "<p><b>Valor de Mercado:</b> R$ " + umCarro.valorMercado().toFixed(2) + "</p>";
     
     alert("Carro cadastrado com sucesso.");
 });
