@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded",function() {
                 selecionarOperacao("multiplicacao","x");
             }
             else if (button.id === "porcentagem") {
-                selecionarOperacao("porcentagem","%");
+                porcentagem();
             }
             else if (button.id === "all-clean") {
                 limpar();
@@ -76,71 +76,85 @@ let operacao = null; // operação atual
 
 // escolha do valor por botão
 function adicionarValor(valorDigitado) { // parametro pego do textContent
-    num2 = 0; // reseta o valor do input
-    console.log("num2 ao entrar no adicionarValor: " + num2)
     const tela = document.getElementById("valor");
+    
+    // evitar repetição de vírgulas (este if precisa ser antes)
+    if (valorDigitado === ',' && tela.textContent.includes(',')) {
+        return;
+    }
+
+    // se a tela for 0 e adicionar vírgula
+    if (tela.textContent === '0' && valorDigitado === ',') {
+        tela.textContent = '0,';
+    }
     // se tela for 0, substituir valor
-    if (tela.textContent === '0') {
+    else if (tela.textContent === '0' || tela.textContent.includes('+') || tela.textContent.includes('-') || 
+        tela.textContent.includes('x') || tela.textContent.includes('/')) {
         tela.textContent = valorDigitado;
     }
     else {
         // se a tela já tem valor, adicionar o novo valor
         tela.textContent += valorDigitado;
     }
-    // vírgula
-    if (valorDigitado === ',' && tela.textContent.includes(',')) {
-        return; // return para evitar repetição de vírgulas
-    }
+
     num2 = parseFloat(tela.textContent.replace(',', '.')); // atualiza o valor com a vírgula substituída por ponto
-    console.log("num1: " + num1);
-    console.log("num2: " + num2);
+    console.log("Valor atual de num1: " + num1);
+    console.log("Valor atual de num2: " + num2);
 }
 
 // escolha do tipo de operação
 function selecionarOperacao(tipoOperacao,simboloOp) {
+    const tela = document.getElementById("valor");
     // se já houver operação anterior, realiza o cálculo
     if (operacao !== null) {
         calcular();
     }
-    const tela = document.getElementById("valor");
-    console.log("num1 antes do input " + num1);
-    num1 = parseFloat(tela.textContent.replace(',', '.'));  // armazena o valor atual antes de calcular
-    console.log("num1 recebeu o valor do input? " + num1);
-    console.log("valor do num2: " + num2)
+    else {
+        num1 = parseFloat(tela.textContent.replace(',', '.'));  // num1 recebe o valor da tela se for primeiro valor da operação
+    }
 
     operacao = tipoOperacao; // define qual operação foi selecionada
-    num2 = 0; // reseta o valor do input
-    console.log("num2 foi resetado?  " + num2);
-
     tela.textContent += " " + simboloOp + " "; // mostra na tela o simbolo de operação
-    console.log("operação selecionada: " + tipoOperacao);
+    num2 = 0; // reseta o valor do input
 }
 
 // operações aritméticas
 function somar() {
-    console.log("soma de " + num1 + " + " + num2  + " realizada");
+    console.log("Soma de " + num1 + " + " + num2  + " realizada.");
     num1 += num2;
 }
 function subtrair() {
-    console.log("subtração de " + num1 + " + " + num2  + " realizada");
     num1 -= num2;
+    console.log("Subtração de " + num1 + " - " + num2  + " realizada.");
 }
 function multiplicar() {
-    console.log("multiplicação de " + num1 + " + " + num2  + " realizada");
     num1 *= num2;
+    console.log("Multiplicação de " + num1 + " x " + num2  + " realizada.");
 }
 function dividir() {
-    console.log("divisão de " + num1 + " + " + num2  + " realizada");
     if (num2 != 0) {
         num1 /= num2;
+        console.log("Divisão de " + num1 + " / " + num2  + " realizada.");
+
     }
     else {
         alert("Não é possível dividir por 0.")
     }
 }
-function porcentagem() {
-    num1 = (num1 * num2) / 100;
-    console.log("porcentagem realizada")
+function porcentagem() { // %
+    // exemplo para referencia: 50 + 10% -> 50 + (50 * 10 / 100) = 55
+    const tela = document.getElementById("valor");
+    if (operacao && num2 !== 0) {
+        // se for parte de uma operação
+        num2 = (num1 * num2) / 100;
+        tela.textContent = num2.toString().replace('.', ',');
+    }
+    else {
+        // se não for parte de uma operação, dividir numero por 100
+        num1 = num2 / 100;
+        tela.textContent = num1.toString().replace('.', ',');
+    }
+    console.log("Porcentagem realizada.")
 }
 
 // operações funcionais
@@ -150,13 +164,22 @@ function limpar() { // A/C
     operacao = null;
     const tela = document.getElementById("valor");
     tela.textContent = '0';
+    console.log("Calculadora limpa.")
 }
-function inverter() { // +/- 
-    num1 *= (-1);
+function inverter() { // +/-
     const tela = document.getElementById("valor");
-    tela.textContent = num1;
+    if (num2 !== 0) {
+        // inverter valor do input recente
+        num2 *= -1;
+        tela.textContent = num2.toString().replace('.', ',');
+    }
+    else if (num1 !== 0) {
+        // inverter valor do resultado
+        num1 *= -1;
+        tela.textContent = num1.toString().replace('.', ',');
+    }
+    console.log("Valor invertido.")
 }
-
 function calcular() { // =
     switch (operacao) {
         case "soma":
@@ -171,15 +194,21 @@ function calcular() { // =
         case "divisao":
             dividir();
             break;
-        case "porcentagem":
-            porcentagem();
-            break;
         default:
             break;
     }
+    // mostrar o resultado na tela
     const tela = document.getElementById("valor");
-    tela.textContent = num1;  // mostra o resultado na tela
-    console.log("Resultado final: " + num1); // Debugging
+    // formatar valor para apresentar apenas duas casas depois da virgula (para casos de dizima periodica)
+    // trocar o . por ,
+    let valorString = num1.toString();
+    if (valorString.includes('.')) {
+        tela.textContent = num1.toFixed(2).replace('.', ',');
+    }
+    else {
+        tela.textContent = num1;
+    }
+    console.log("Resultado final: " + num1);
     num2 = 0;
     operacao = null;  // reseta a operação para o próximo cálculo
 }

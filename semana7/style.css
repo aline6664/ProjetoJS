@@ -15,9 +15,11 @@ div#conteudo {
 div#calculadora {
     display: block;
     margin: 0 auto;
+    width: 405px;
     height: 650px;
     background-color: rgb(27, 27, 27);
     border-radius: 5px;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.4);
 }
 /*tela*/
 div#valor {
