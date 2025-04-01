@@ -49,4 +49,8 @@ img.icon-clickavel:hover {
 img.icon-resetar {
     width: 30px;
     cursor: pointer;
+    transition: transform .2s;
+}
+img.icon-resetar:hover {
+    transform: scale(1.1);
 }

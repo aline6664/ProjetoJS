@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!--Chamando a biblioteca de REACT, incluindo a Babel-->
+    <!--Babel: faz a leitura do HTML nas linhas de código de JS do React-->
+    <script src="http://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="http://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="http://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Adicionando React à minha página</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel"> // Chamando a Babel
+        // Sintaxe JSX (permite escrever HTML no Javascript)
+        // Ela é lida pela Babel, pois o navegador não consegue ler
+
+        const elemento = <h1>Olá mundo!</h1>
+
+        ReactDOM.render(elemento,document.getElementById('root'));
+        //       render(componente que quero renderizar, onde quero renderizar)
+
+        // NOTA: NÃO RECOMENDADO
+        // ESSA FORMA ESTÁ EM DESUSO, POIS NÃO HÁ MAIS SUPORTE NO REACT 18 P/ CIMA
+        // FUNCIONA EM ALGUMAS MÁQUINAS E VERSÕES, MAS NEM EM TODAS POR ISSO
+    </script>
+</body>
+</html>

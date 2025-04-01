@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="http://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="http://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Adicionando React à minha página</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function MeuElemento() {
+            const nome = 'Fatec'
+            return <h1>Olá {nome}</h1>
+        }
+        // FORMA RECOMENDADA A SEGUIR NO REACT 18
+        const container = document.getElementById('root'); // onde quero renderizar
+        const root = ReactDOM.createRoot(container); // entrada da raíz (root)
+        root.render(<MeuElemento/>) // método render para instanciar o elemento
+                                    // marcação personalizada (<MeuElemento> pode ser qualquer nome)
+    </script>
+</body>
+</html>

@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
             </div>
         </div>
- 
         <img src="img/reset-icon.png" class="icon-resetar" id="btnReset">
     `;
  
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("btnMulheres").addEventListener("click", () => adicionarValor('mulheres'));
     document.getElementById("btnDiminuirHomens").addEventListener("click", () => diminuirValor('homens'));
     document.getElementById("btnDiminuirMulheres").addEventListener("click", () => diminuirValor('mulheres'));
-    document.getElementById("btnReset").addEventListener("click", resetarValores());
+    document.getElementById("btnReset").addEventListener("click", () => resetarValores());
 });
 
 let valorHomens = 0;
