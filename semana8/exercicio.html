@@ -11,21 +11,25 @@
     <div id="texto"></div>
 
     <script type="text/babel">
-        function MeuTexto({agora}) {
-            return <><p>Venha estudar na Fatec!</p></>
+        const textoCompleto = "Venha estudar na Fatec!";
+        let i = 0;
+
+        function MeuTexto({digitado}) {
+            return <><h1>{digitado}</h1></>
         }
 
         const container = document.getElementById('texto');
         const root = ReactDOM.createRoot(container);
 
         function digitar() {
-            const texto = MeuTexto();
-            for (i = 0; i < texto.length; i++) {
-                let letra = texto[i];
+            if (i <= textoCompleto.length) {
+                const textoDigitando = textoCompleto.slice(0,i); // inicio (inclusivo),fim (exclusivo)
+                root.render(<MeuTexto digitado = {textoDigitando}/>);
+                i++;
+
             }
-            root.render(<MeuTexto agora = {letra}/>);
         }
-        setInterval(digitar,1000);
+        setInterval(digitar,200);
     </script>
 </body>
 </html>
